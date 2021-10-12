@@ -6,9 +6,9 @@ import java.sql.*;
 public class DateProvider {
 	
 	public static Date returnDBDate() {
+		return new Date();
 		
-		
-		Connection conn = null;
+/*		Connection conn = null;
 		Date currentDatefromDB = null; 
 		
         try {
@@ -51,7 +51,7 @@ public class DateProvider {
             }
         }
         
-        return currentDatefromDB;
+        return currentDatefromDB;*/
         
     }
 
