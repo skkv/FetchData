@@ -1,22 +1,34 @@
 package com.date;
 
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
-import java.sql.*;
+import java.util.GregorianCalendar;
 
 public class DateProvider {
 	
-	public static Date returnDBDate() {
-		return new Date();
+	public static String returnDBDate() {
+		//return new Date();
 		
-/*		Connection conn = null;
-		Date currentDatefromDB = null; 
+		Connection conn = null;
+		//String currentDatefromDBinStr = null;
+		Date currentDatefromDB = null;
 		
         try {
  
         	//String connectionUrl = "jdbc:sqlserver://<server>:<port>;databaseName=AdventureWorks;user=<user>;password=<password>";
-            String dbURL = "jdbc:sqlserver://localhost\\sqlexpress";
+            //String dbURL = "jdbc:sqlserver://localhost\\sqlexpress";
+            //String dbURL = "jdbc:localhost://dbHost\\localhost;user=sa;password=secret";
+            String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=TestDB;integratedSecurity=true";
             String user = "sa";
-            String pass = "secret";
+            String pass = "alpsttpocdb12*";
             conn = DriverManager.getConnection(dbURL, user, pass);
             if (conn != null) {
                 DatabaseMetaData dm = (DatabaseMetaData) conn.getMetaData();
@@ -35,10 +47,6 @@ public class DateProvider {
     			currentDatefromDB = rs.getDate(1);
     			
     		}		
-            
-            
-            
- 
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
@@ -49,15 +57,26 @@ public class DateProvider {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
+            
         }
-        
-        return currentDatefromDB;*/
-        
+        DateFormat df = new SimpleDateFormat();
+        if (currentDatefromDB!= null) {
+        	return df.format(currentDatefromDB);
+        }
+        else {
+        	return "DB connection error. Unable to get Date";
+        }
+        	
     }
 
-
+	public static String returnGregorianCalendarTimestamp() {
+		final Calendar calendar = Calendar.getInstance();
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH) + 1;
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
 		
-		
+		java.sql.Timestamp javagrsqlTsp = new java.sql.Timestamp(new GregorianCalendar(year, month-1, day).getTimeInMillis());
+		return javagrsqlTsp.toString();
+	}
 	
-
 }
