@@ -24,9 +24,9 @@ public class DateProvider {
         try {
  
         	//String connectionUrl = "jdbc:sqlserver://<server>:<port>;databaseName=AdventureWorks;user=<user>;password=<password>";
-            //String dbURL = "jdbc:sqlserver://localhost\\sqlexpress";
+            String dbURL = "jdbc:sqlserver://localhost\\vm-lnx-alpspoc-";
             //String dbURL = "jdbc:localhost://dbHost\\localhost;user=sa;password=secret";
-            String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=TestDB;integratedSecurity=true";
+            //String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=TestDB;integratedSecurity=true";
             String user = "sa";
             String pass = "alpsttpocdb12*";
             conn = DriverManager.getConnection(dbURL, user, pass);
