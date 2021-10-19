@@ -24,7 +24,7 @@ public class DateProvider {
         try {
  
         	//String connectionUrl = "jdbc:sqlserver://<server>:<port>;databaseName=AdventureWorks;user=<user>;password=<password>";
-            String dbURL = "jdbc:sqlserver://localhost\\vm-lnx-alpspoc-";
+            String dbURL = "jdbc:sqlserver://localhost\\vm-lnx-alpspoc-:1433";
             //String dbURL = "jdbc:localhost://dbHost\\localhost;user=sa;password=secret";
             //String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=TestDB;integratedSecurity=true";
             String user = "sa";
@@ -40,7 +40,7 @@ public class DateProvider {
             
             //Executing SQL query and fetching the result
     		Statement st = conn.createStatement();
-    		String sqlStr = "SELECT SYSDATETIME()";
+    		String sqlStr = "SELECT GETDATE()";
     		ResultSet rs = st.executeQuery(sqlStr);
     		while (rs.next()) {
     			System.out.println(rs.getDate(1));
@@ -59,7 +59,7 @@ public class DateProvider {
             }
             
         }
-        DateFormat df = new SimpleDateFormat();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss");
         if (currentDatefromDB!= null) {
         	return df.format(currentDatefromDB);
         }
